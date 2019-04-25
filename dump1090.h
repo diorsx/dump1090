@@ -306,6 +306,7 @@ struct {                             // Internal state
     int   net_output_beast_port;     // Beast output TCP port
     int   net_input_beast_port;      // Beast input TCP port
     char  *net_bind_address;         // Bind address
+    char  *output_sbs_bind_address;  // Bind address for TCP BaseStation output
     int   net_http_port;             // HTTP port
     int   net_sndbuf_size;           // TCP output buffer size (64Kb * 2^n)
     int   quiet;                     // Suppress stdout

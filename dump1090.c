@@ -413,6 +413,7 @@ void showHelp(void) {
 "--net-http-port <port>   HTTP server port (default: 8080)\n"
 "--net-ri-port <port>     TCP raw input listen port  (default: 30001)\n"
 "--net-ro-port <port>     TCP raw output listen port (default: 30002)\n"
+"--net-sbs-bind-address <ip> IP address to bind for TCP BaseStation output (default: Any; Use 127.0.0.1 for private)\n"
 "--net-sbs-port <port>    TCP BaseStation output listen port (default: 30003)\n"
 "--net-bi-port <port>     TCP Beast input listen port  (default: 30004)\n"
 "--net-bo-port <port>     TCP Beast output listen port (default: 30005)\n"
@@ -721,6 +722,8 @@ int main(int argc, char **argv) {
             Modes.net_bind_address = strdup(argv[++j]);
         } else if (!strcmp(argv[j],"--net-http-port") && more) {
             Modes.net_http_port = atoi(argv[++j]);
+        } else if (!strcmp(argv[j],"--net-sbs-bind-address") && more) {
+            Modes.output_sbs_bind_address = strdup(argv[++j]);
         } else if (!strcmp(argv[j],"--net-sbs-port") && more) {
             Modes.net_output_sbs_port = atoi(argv[++j]);
         } else if (!strcmp(argv[j],"--net-buffer") && more) {
