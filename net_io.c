@@ -85,11 +85,12 @@ void modesInitNet(void) {
     for (j = 0; j < MODES_NET_SERVICES_NUM; j++) {
 		services[j].enabled = (services[j].port != 0);
 		if (services[j].enabled) {
-			if (services[j].descr == "Basestation TCP output") {
-				int s = anetTcpServer(Modes.aneterr, services[j].port, Modes.output_sbs_bind_address);
+			int s = 0;
+			if (strcmp(services[j].descr == "Basestation TCP output") == 0) {
+				s = anetTcpServer(Modes.aneterr, services[j].port, Modes.output_sbs_bind_address);
 			}
 			else {
-				int s = anetTcpServer(Modes.aneterr, services[j].port, Modes.net_bind_address);
+				s = anetTcpServer(Modes.aneterr, services[j].port, Modes.net_bind_address);
 			}
 			if (s == -1) {
 				fprintf(stderr, "Error opening the listening port %d (%s): %s\n",
