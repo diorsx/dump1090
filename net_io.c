@@ -86,7 +86,7 @@ void modesInitNet(void) {
 		services[j].enabled = (services[j].port != 0);
 		if (services[j].enabled) {
 			int s = 0;
-			if (strcmp(services[j].descr == "Basestation TCP output") == 0) {
+			if (strcmp(services[j].descr, "Basestation TCP output") == 0) {
 				s = anetTcpServer(Modes.aneterr, services[j].port, Modes.output_sbs_bind_address);
 			}
 			else {
