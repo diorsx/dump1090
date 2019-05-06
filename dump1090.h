@@ -371,6 +371,12 @@ struct {                             // Internal state
 
     unsigned int stat_blocks_processed;
     unsigned int stat_blocks_dropped;
+	//HTTP全局配置
+	char *uuid;
+	char *sendurl;
+	char *passwd;
+	int enabled;
+	
 } Modes;
 
 // The struct we use to store information about a decoded message.
@@ -459,6 +465,12 @@ void modesReadFromClients (void);
 void modesSendAllClients  (int service, void *msg, int len);
 void modesQueueOutput     (struct modesMessage *mm);
 void modesReadFromClient(struct client *c, char *sep, int(*handler)(struct client *, char *));
+
+// 
+// Functions exported from http_io.c
+// 
+void modesInitHttp              (void);
+void modesOutputHttp     (struct modesMessage *mm);
 
 #ifdef __cplusplus
 }

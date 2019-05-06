@@ -29,6 +29,7 @@
 //
 #include "coaa.h"
 #include "dump1090.h"
+#include "iniparser.h"
 //
 // ============================= Utility functions ==========================
 //
@@ -83,6 +84,20 @@ void modesInitConfig(void) {
     Modes.fUserLat                = MODES_USER_LATITUDE_DFLT;
     Modes.fUserLon                = MODES_USER_LONGITUDE_DFLT;
 }
+
+//
+//=========================================================================
+//
+void modesInitHttpConfig(void) {
+	dictionary  *httpconfig;
+	
+	httpconfig = iniparser_load("./config.ini"); //解析配置文件
+	Modes.uuid     = iniparser_getstring(httpconfig, "global:uuid","null");    //获取配置文件里的UUID
+	Modes.sendurl  = iniparser_getstring(httpconfig, "global:sendurl","null");
+	Modes.passwd   = iniparser_getstring(httpconfig, "global:passwd","null");
+	Modes.enabled  = iniparser_getstring(httpconfig, "global:enabled",1);
+}
+
 //
 //=========================================================================
 //
@@ -799,6 +814,13 @@ int main(int argc, char **argv) {
     // Setup for SIGWINCH for handling lines
     if (Modes.interactive) {signal(SIGWINCH, sigWinchCallback);}
 #endif
+
+    //解析配置文件
+	modesInitHttpConfig();
+	printf("uuid=%p\n", Modes.uuid); 
+	printf("sendurl=%p\n", Modes.sendurl); 
+	printf("passwd=%p\n", Modes.passwd); 
+	printf("enabled=%d\n", Modes.enabled); 
 
     // Initialization
     modesInit();
