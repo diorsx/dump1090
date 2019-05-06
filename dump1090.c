@@ -89,13 +89,13 @@ void modesInitConfig(void) {
 //=========================================================================
 //
 void modesInitHttpConfig(void) {
-	dictionary  *httpconfig;
-	
-	httpconfig = iniparser_load("./config.ini"); //解析配置文件
-	Modes.uuid     = iniparser_getstring(httpconfig, "global:uuid","null");    //获取配置文件里的UUID
-	Modes.sendurl  = iniparser_getstring(httpconfig, "global:sendurl","null");
-	Modes.passwd   = iniparser_getstring(httpconfig, "global:passwd","null");
-	Modes.enabled  = iniparser_getstring(httpconfig, "global:enabled",1);
+    dictionary  *httpconfig;
+    
+    httpconfig = iniparser_load("./config.ini"); //解析配置文件
+    Modes.uuid     = iniparser_getstring(httpconfig, "global:UUID", "null");    //获取配置文件里的UUID
+    Modes.sendurl  = iniparser_getstring(httpconfig, "global:SENDURL", "null");
+    Modes.passwd   = iniparser_getstring(httpconfig, "global:PASSWD", "null");
+    Modes.enabled  = iniparser_getint(httpconfig, "global:ENABLED", 1);
 }
 
 //
@@ -816,11 +816,11 @@ int main(int argc, char **argv) {
 #endif
 
     //解析配置文件
-	modesInitHttpConfig();
-	printf("uuid=%p\n", Modes.uuid); 
-	printf("sendurl=%p\n", Modes.sendurl); 
-	printf("passwd=%p\n", Modes.passwd); 
-	printf("enabled=%d\n", Modes.enabled); 
+    modesInitHttpConfig();
+    printf("uuid=%s\n", *Modes.uuid); 
+    printf("sendurl=%s\n", *Modes.sendurl); 
+    printf("passwd=%s\n", *Modes.passwd); 
+    printf("enabled=%d\n", Modes.enabled); 
 
     // Initialization
     modesInit();
