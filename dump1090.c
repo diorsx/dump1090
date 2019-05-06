@@ -817,9 +817,9 @@ int main(int argc, char **argv) {
 
     //解析配置文件
     modesInitHttpConfig();
-    printf("uuid=%s\n", *Modes.uuid); 
-    printf("sendurl=%s\n", *Modes.sendurl); 
-    printf("passwd=%s\n", *Modes.passwd); 
+    printf("uuid=%s\n", Modes.uuid); 
+    printf("sendurl=%s\n", Modes.sendurl); 
+    printf("passwd=%s\n", Modes.passwd); 
     printf("enabled=%d\n", Modes.enabled); 
 
     // Initialization
