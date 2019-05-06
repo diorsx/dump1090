@@ -372,9 +372,9 @@ struct {                             // Internal state
     unsigned int stat_blocks_processed;
     unsigned int stat_blocks_dropped;
     //HTTP全局配置
-    char *uuid;
-    char *sendurl;
-    char *passwd;
+    const char *uuid;
+    const char *sendurl;
+    const char *passwd;
     int enabled;
     
 } Modes;
