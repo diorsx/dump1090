@@ -1940,7 +1940,7 @@ void useModesMessage(struct modesMessage *mm) {
         // Feed output clients
         if (Modes.net) {modesQueueOutput(mm);}
         //send data to http server
-        if (Modes.enabled) {modesOutputHttp(mm);}
+        if (Modes.http_enabled) {modesOutputHttp(mm);}
 
         // Heartbeat not required whilst we're seeing real messages
         Modes.net_heartbeat_count = 0;

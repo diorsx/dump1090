@@ -375,7 +375,7 @@ struct {                             // Internal state
     const char *uuid;
     const char *sendurl;
     const char *passwd;
-    int enabled;
+    int http_enabled;
     
 } Modes;
 

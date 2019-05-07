@@ -92,10 +92,10 @@ void modesInitHttpConfig(void) {
     dictionary  *httpconfig;
     
     httpconfig = iniparser_load("./config.ini"); //解析配置文件
-    Modes.uuid     = iniparser_getstring(httpconfig, "global:UUID", "null");    //获取配置文件里的UUID
-    Modes.sendurl  = iniparser_getstring(httpconfig, "global:SENDURL", "null");
-    Modes.passwd   = iniparser_getstring(httpconfig, "global:PASSWD", "null");
-    Modes.enabled  = iniparser_getint(httpconfig, "global:ENABLED", 1);
+    Modes.uuid          = iniparser_getstring(httpconfig, "global:UUID", "null");    //获取配置文件里的UUID
+    Modes.sendurl       = iniparser_getstring(httpconfig, "global:SENDURL", "null");
+    Modes.passwd        = iniparser_getstring(httpconfig, "global:PASSWD", "null");
+    Modes.http_enabled  = iniparser_getint(httpconfig, "global:HTTP_ENABLED", 1);
 }
 
 //
