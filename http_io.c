@@ -54,7 +54,7 @@ void sendMsgForHttp(char *p) {
         // curl_easy_setopt(curl, CURLOPT_WRITEDATA, data);
         
         CURLcode res;
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, &p);                                  // 指定post内容
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, p);                                  // 指定post内容
         curl_easy_setopt(curl, CURLOPT_URL, Modes.sendurl);                              // 指定url
         curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT_MS, 15000);
         res = curl_easy_perform(curl);
@@ -68,8 +68,6 @@ void sendMsgForHttp(char *p) {
 }
 
 void modesInitMsgForHttp(struct modesMessage *mm, char *p) {
-    char msg[256];
-    p = msg;
     uint32_t     offset;
     struct timeb epocTime_receive, epocTime_now;
     struct tm    stTime_receive, stTime_now;
@@ -220,11 +218,10 @@ void modesInitMsgForHttp(struct modesMessage *mm, char *p) {
         p += sprintf(p, ",");
     }
     p += sprintf(p, "\r\n");
-    return p;
 }
 
 void modesOutputHttp (struct modesMessage *mm){
-    char *p;
+    char msg[256], *p = msg;
     modesInitMsgForHttp(mm, p);
     sendMsgForHttp( p ); 
 };
