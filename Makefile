@@ -21,10 +21,10 @@ all: dump1090 view1090
 	$(CC) $(CFLAGS) $(EXTRACFLAGS) -c $<
 
 dump1090: dump1090.o anet.o interactive.o mode_ac.o mode_s.o net_io.o http_io.o libiniparser.a
-	$(CC) -g -o dump1090 dump1090.o anet.o interactive.o mode_ac.o mode_s.o net_io.o http_io.o libiniparser.a $(LIBS) $(LDFLAGS)
+	$(CC) -g -o dump1090  -l curl dump1090.o anet.o interactive.o mode_ac.o mode_s.o net_io.o http_io.o libiniparser.a $(LIBS) $(LDFLAGS)
 
-view1090: view1090.o anet.o interactive.o mode_ac.o mode_s.o net_io.o
-	$(CC) -g -o view1090 view1090.o anet.o interactive.o mode_ac.o mode_s.o net_io.o $(LIBS) $(LDFLAGS)
+view1090: view1090.o anet.o interactive.o mode_ac.o mode_s.o net_io.o http_io.o
+	$(CC) -g -o view1090 -l curl view1090.o anet.o interactive.o mode_ac.o mode_s.o net_io.o http_io.o $(LIBS) $(LDFLAGS)
 
 clean:
 	rm -f *.o dump1090 view1090

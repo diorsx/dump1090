@@ -36,13 +36,6 @@
 // Note: here we disregard any kind of good coding practice in favor of
 //=========================================================================
 //
-
-void modesOutputHttp (struct modesMessage *mm){
-    char *p;
-    p = modesInitMsgForHttp(mm);
-    sendMsgForHttp( p ); 
-};
-
 void sendMsgForHttp(char *p) {
     
     curl_global_init(CURL_GLOBAL_ALL);
@@ -54,7 +47,6 @@ void sendMsgForHttp(char *p) {
         curl_global_cleanup();        
         return ;
     }
-    
     if (curl)
     {
         // curl_easy_setopt(curl, CURLOPT_COOKIEFILE, "/tmp/cookie.txt");
@@ -72,11 +64,12 @@ void sendMsgForHttp(char *p) {
         curl_easy_cleanup(curl);
     }
     curl_global_cleanup();
-    return true;
+    return;
 }
 
-void modesInitMsgForHttp(struct modesMessage *mm) {
-    char msg[256], *p = msg;
+void modesInitMsgForHttp(struct modesMessage *mm, char *p) {
+    char msg[256];
+    p = msg;
     uint32_t     offset;
     struct timeb epocTime_receive, epocTime_now;
     struct tm    stTime_receive, stTime_now;
@@ -230,4 +223,9 @@ void modesInitMsgForHttp(struct modesMessage *mm) {
     return p;
 }
 
+void modesOutputHttp (struct modesMessage *mm){
+    char *p;
+    modesInitMsgForHttp(mm, p);
+    sendMsgForHttp( p ); 
+};
 
